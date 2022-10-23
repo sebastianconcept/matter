@@ -4,7 +4,7 @@ Logging helper
 Class {
 	#name : #MTLog,
 	#superclass : #Object,
-	#category : #'Matter-Base-Core-Helpers'
+	#category : #'Matter-Core-Helpers'
 }
 
 { #category : #logging }

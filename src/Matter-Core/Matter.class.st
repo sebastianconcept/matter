@@ -4,7 +4,7 @@ Helful for starting/stopping/restarting the server.
 Class {
 	#name : #Matter,
 	#superclass : #Object,
-	#category : #'Matter-Base-Core-Helpers'
+	#category : #'Matter-Core-Helpers'
 }
 
 { #category : #accessing }
