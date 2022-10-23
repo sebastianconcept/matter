@@ -6,33 +6,19 @@ Class {
 
 { #category : #baselines }
 BaselineOfMatter >> baseline: spec [
+
 	<baseline>
-	spec
-		for: #common
-		do: [ self setUpBaseDependencies: spec.
-			self setUpPackages: spec.
-			spec
-				group: 'Core' with: #('Matter-Base-Core');
-				group: 'Client' with: #('Matter-Client-Tests');
-				group: 'Server' with: #('Matter-Server-Tests');
-				group: 'default' with: #('Client') ]
-]
-
-{ #category : #baselines }
-BaselineOfMatter >> setUpBaseDependencies: spec [
-	self zinc: spec.
-
-]
-
-{ #category : #baselines }
-BaselineOfMatter >> setUpBasePackages: spec [
-	spec
-		package: 'Matter-Base-Core'
-		with: [ spec requires: 'ZincHTTPComponents' ].
-	spec
-		package: 'Matter-Tests-Base'
-		with: [ spec requires: 'Matter-Base-Core' ].
-
+	spec for: #common do: [ 
+		self setUpCoreDependencies: spec.
+		self setUpPackages: spec.
+		spec
+			group: 'Core' with: #( 'Matter-Core' );
+			group: 'Tests' with: #( 'Matter-Core-Tests' );
+			group: 'Client' with: #( 'Matter-Client' );
+			group: 'Client-Tests' with: #( 'Matter-Client' 'Tests' );
+			group: 'Server' with: #( 'Matter-Server' );
+			group: 'Server-Tests' with: #( 'Matter-Server' 'Tests' );
+			group: 'default' with: #( 'Client' ) ]
 ]
 
 { #category : #baselines }
@@ -45,17 +31,34 @@ BaselineOfMatter >> setUpClientDependencies: spec [
 BaselineOfMatter >> setUpClientPackages: spec [
 
 	spec
-		package: 'Matter-Client-Core'
-		with: [ spec requires: #( 'Matter-Base-Core' ) ].
+		package: 'Matter-Client'
+		with: [ spec requires: #( 'Matter-Core' ) ].
 	spec
 		package: 'Matter-Client-Tests'
-		with: [ spec requires: #( 'Matter-Base-Core' ) ]
+		with: [ spec requires: #( 'Matter-Core-Tests' ) ]
+]
+
+{ #category : #baselines }
+BaselineOfMatter >> setUpCoreDependencies: spec [
+	self zinc: spec.
+
+]
+
+{ #category : #baselines }
+BaselineOfMatter >> setUpCorePackages: spec [
+	spec
+		package: 'Matter-Core'
+		with: [ spec requires: 'ZincHTTPComponents' ].
+	spec
+		package: 'Matter-Core-Tests'
+		with: [ spec requires: 'Matter-Core' ].
+
 ]
 
 { #category : #baselines }
 BaselineOfMatter >> setUpPackages: spec [
-	self setUpBaseDependencies: spec.
-	self setUpBasePackages: spec.
+	self setUpCoreDependencies: spec.
+	self setUpCorePackages: spec.
 	
 	self setUpClientDependencies: spec.
 	self setUpClientPackages: spec.
@@ -75,11 +78,11 @@ BaselineOfMatter >> setUpServerDependencies: spec [
 BaselineOfMatter >> setUpServerPackages: spec [
 
 	spec
-		package: 'Matter-Server-Core'
-		with: [ spec requires: #( 'Matter-Base-Core' ) ].
+		package: 'Matter-Server'
+		with: [ spec requires: #( 'Matter-Core' ) ].
 	spec
 		package: 'Matter-Server-Tests'
-		with: [ spec requires: #( 'Matter-Base-Core' ) ]
+		with: [ spec requires: #( 'Matter-Core-Tests' ) ]
 ]
 
 { #category : #baselines }
