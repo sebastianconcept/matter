@@ -15,9 +15,9 @@ BaselineOfMatter >> baseline: spec [
 			group: 'Core' with: #( 'Matter-Core' );
 			group: 'Tests' with: #( 'Matter-Core-Tests' );
 			group: 'Client' with: #( 'Matter-Client' );
-			group: 'Client-Tests' with: #( 'Matter-Client' 'Tests' );
+			group: 'Client-Tests' with: #( 'Matter-Client-Tests' );
 			group: 'Server' with: #( 'Matter-Server' );
-			group: 'Server-Tests' with: #( 'Matter-Server' 'Tests' );
+			group: 'Server-Tests' with: #( 'Matter-Server-Tests' );
 			group: 'default' with: #( 'Client' ) ]
 ]
 
