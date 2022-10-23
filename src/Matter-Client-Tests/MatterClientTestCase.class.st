@@ -20,5 +20,5 @@ MatterClientTestCase >> testSimpleSerializeDeserialize [
 	bytes := api serialize: { (#answer -> 42) } asDictionary.
 	self
 		assert: (api materialize: bytes)
-		equals: { (#answer -> 42) } asDictionary
+		equals: { (#answer -> 42) } asDictionary.
 ]
