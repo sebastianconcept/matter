@@ -1,5 +1,5 @@
 Class {
 	#name : #MatterClient,
 	#superclass : #Object,
-	#category : #'Matter-Client'
+	#category : #'Matter-Client-Core'
 }

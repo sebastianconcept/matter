@@ -8,7 +8,7 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #'Matter-Server'
+	#category : #'Matter-Server-Core'
 }
 
 { #category : #accessing }
