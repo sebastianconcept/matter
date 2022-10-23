@@ -12,7 +12,7 @@ BaselineOfMatter >> baseline: spec [
 		do: [ self setUpBaseDependencies: spec.
 			self setUpPackages: spec.
 			spec
-				group: 'Core' with: #('Matter-Core');
+				group: 'Core' with: #('Matter-Base-Core');
 				group: 'Client' with: #('Matter-Client-Tests');
 				group: 'Server' with: #('Matter-Server-Tests');
 				group: 'default' with: #('Client') ]
