@@ -128,14 +128,14 @@ MTServer >> run: aWebSocket with: aBlock [
 		  do: [ :x | self onSocketClosed: aWebSocket ]
 ]
 
-{ #category : #accessing }
+{ #category : #actions }
 MTServer >> start [
 
 	MTLog log: 'Starting Matter server'.
-	self zinc 	
+	self zinc
 ]
 
-{ #category : #accessing }
+{ #category : #actions }
 MTServer >> stop [
 
 	MTLog log: 'Stopping Matter server'.
