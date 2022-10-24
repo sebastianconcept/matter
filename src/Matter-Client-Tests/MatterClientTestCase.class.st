@@ -22,3 +22,20 @@ MatterClientTestCase >> testSimpleSerializeDeserialize [
 		assert: (api materialize: bytes)
 		equals: { (#answer -> 42) } asDictionary.
 ]
+
+{ #category : #tests }
+MatterClientTestCase >> testWebSocketEcho [
+
+	| message client |
+	ZnServer startDefaultOn: 1701.
+	ZnServer default delegate:
+		(ZnWebSocketDelegate map: 'ws-echo' to: ZnWebSocketEchoHandler new).
+	client := MTClient url:
+		          (ZnUrl fromString: 'ws://localhost:1701/ws-echo').
+	message := 'Greetings from Pharo Smalltalk @ '
+	           , DateAndTime now printString.
+	client webSocket sendMessage: message.
+	self assert: client webSocket readMessage equals: message.
+	client close.
+	ZnServer stopDefault
+]
