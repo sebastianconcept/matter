@@ -6,7 +6,9 @@ Class {
 	#name : #MTServer,
 	#superclass : #Object,
 	#instVars : [
-		'zinc'
+		'zinc',
+		'serializer',
+		'store'
 	],
 	#classInstVars : [
 		'instance'
@@ -62,6 +64,21 @@ MTServer class >> token [
 			  'The Matter server requires the MATTER_TOKEN env var value to be set' ]
 ]
 
+{ #category : #actions }
+MTServer >> answer: aMTAnswer on: aWebSocket [
+
+	aWebSocket sendMessage: (self serialize: aMTAnswer)
+]
+
+{ #category : #initialization }
+MTServer >> initialize [
+
+	super initialize.
+
+	serializer := MTSerializer new.
+	store := self newStore
+]
+
 { #category : #initialization }
 MTServer >> initializeZinc [
 
@@ -71,11 +88,28 @@ MTServer >> initializeZinc [
 		          yourself
 ]
 
+{ #category : #actions }
+MTServer >> materialize: aByteArray [
+
+	^ serializer materialize: aByteArray
+]
+
+{ #category : #actions }
+MTServer >> newStore [
+
+	^ Dictionary new
+]
+
 { #category : #reactions }
-MTServer >> onMessage: aMessageString from: aWebSocket [
+MTServer >> onMessage: aMessageByteArray from: aWebSocket [
+
 	"Receives aMessage from the connection with aWebSocket.
 	Interprets the message and sends a response."
-	Transcript crShow: aMessageString 
+
+	| message |
+	message := self materialize: aMessageByteArray.
+	message processOn: self over: aWebSocket
+
 	"| view message newViewModel |
 	message := MTMessage for: aMessageString.
 	view := self views
@@ -129,6 +163,12 @@ MTServer >> run: aWebSocket with: aBlock [
 ]
 
 { #category : #actions }
+MTServer >> serialize: anObject [
+
+	^ serializer serialize: anObject
+]
+
+{ #category : #actions }
 MTServer >> start [
 
 	MTLog log: 'Starting Matter server'.
@@ -142,6 +182,12 @@ MTServer >> stop [
 	zinc ifNotNil: [ 
 		zinc stop.
 		zinc := nil ]
+]
+
+{ #category : #accessing }
+MTServer >> store [
+
+	^ store
 ]
 
 { #category : #accessing }

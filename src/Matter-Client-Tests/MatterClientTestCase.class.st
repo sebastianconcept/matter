@@ -5,6 +5,35 @@ Class {
 }
 
 { #category : #tests }
+MatterClientTestCase >> testAtPutSerialization [
+
+	| api target bytes reified |
+	api := MTClient new.
+
+	target := MTAtPutMessage at: #store put: 42.
+
+	bytes := api serialize: target.
+	reified := api materialize: bytes.
+	self assert: reified key equals: #store.
+	self assert: reified value equals: 42.
+
+	target := MTAtPutMessage
+		          at: #doc
+		          put: { (#answer -> 42) } asDictionary.
+	bytes := api serialize: target.
+	reified := api materialize: bytes.
+	self assert: reified value equals: { (#answer -> 42) } asDictionary
+]
+
+{ #category : #tests }
+MatterClientTestCase >> testHasHasher [
+
+	| api |
+	api := MTClient new.
+	self assert: api hasher notNil
+]
+
+{ #category : #tests }
 MatterClientTestCase >> testSimpleSerializeDeserialize [
 
 	| api string bytes |
