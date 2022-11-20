@@ -3,17 +3,17 @@ Extension { #name : #Matter }
 { #category : #'*Matter-Server' }
 Matter class >> reset [
 
-	MatterServer reset
+	MTServer reset
 ]
 
 { #category : #'*Matter-Server' }
 Matter class >> server [
 
-	^ MatterServer instance
+	^ MTServer instance
 ]
 
 { #category : #'*Matter-Server' }
 Matter class >> start [
 
-	MatterServer 
+	MTServer 
 ]

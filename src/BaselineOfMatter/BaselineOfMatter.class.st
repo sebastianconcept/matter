@@ -35,7 +35,7 @@ BaselineOfMatter >> setUpClientPackages: spec [
 		with: [ spec requires: #( 'Matter-Core' ) ].
 	spec
 		package: 'Matter-Client-Tests'
-		with: [ spec requires: #( 'Matter-Core-Tests' ) ]
+		with: [ spec requires: #( 'Matter-Client' 'Matter-Core-Tests' ) ]
 ]
 
 { #category : #baselines }
@@ -80,9 +80,9 @@ BaselineOfMatter >> setUpServerPackages: spec [
 	spec
 		package: 'Matter-Server'
 		with: [ spec requires: #( 'Matter-Core' ) ].
-	spec
-		package: 'Matter-Server-Tests'
-		with: [ spec requires: #( 'Matter-Core-Tests' ) ]
+	spec package: 'Matter-Server-Tests' with: [ 
+		spec requires:
+			#( 'Matter-Server' 'Matter-Core-Tests' 'Matter-Client-Tests' ) ]
 ]
 
 { #category : #baselines }
