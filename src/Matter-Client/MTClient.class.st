@@ -6,17 +6,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'serializer',
-		'webSocket',
-		'hasher'
+		'webSocket'
 	],
 	#category : #'Matter-Client-Core'
 }
-
-{ #category : #'as yet unclassified' }
-MTClient class >> defaultHasher [
-
-	^ MTPoliteKnight new
-]
 
 { #category : #'instance creation' }
 MTClient class >> host: aHostnameOrIpAddressString port: anInteger [
@@ -57,30 +50,12 @@ MTClient >> close [
 	webSocket ifNotNil: [ webSocket close ]
 ]
 
-{ #category : #accessing }
-MTClient >> hasher [
-
-	^ hasher ifNil: [ self initializeHasher ]
-]
-
-{ #category : #accessing }
-MTClient >> hasher: anObject [
-
-	hasher := anObject
-]
-
 { #category : #initialization }
 MTClient >> initialize [
 
 	super initialize.
 	
 	serializer := MTSerializer new
-]
-
-{ #category : #initialization }
-MTClient >> initializeHasher [
-
-	^ hasher := self class defaultHasher
 ]
 
 { #category : #initialization }
