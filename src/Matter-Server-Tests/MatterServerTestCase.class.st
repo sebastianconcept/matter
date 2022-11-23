@@ -36,14 +36,14 @@ MatterServerTestCase >> testSizeAnswer [
 
 	| api answer server |
 	server := MTServer startOn: 1901.
-	api := MTClient host: 'localhost' port: MTServer port.
+	api := MTClient host: 'localhost' port: 1901.
 
 	api at: #stored40 put: 40.
 	api at: #stored41 put: 41.
 	api at: #stored42 put: 42.
 
 	answer := api size.
-	self assert: answer value equals: 3.
+	self assert: answer equals: 3.
 
 	server stop
 ]
