@@ -17,7 +17,17 @@ Matter class >> fromUrls: urls [
 	^ self new initializeOn: (MTCaravan fromUrls: urls)
 ]
 
-{ #category : #actions }
+{ #category : #api }
+Matter >> at: key [
+
+	| url |
+	url := distributor nodeFor: key.
+	^ (nodes at: url ifAbsent: [ 
+		   MTMissingNode signal:
+			   ('Expected node missing at {1}' format: { url }) ]) at: key
+]
+
+{ #category : #api }
 Matter >> at: key put: aSerializable [
 
 	| url |
@@ -27,6 +37,12 @@ Matter >> at: key put: aSerializable [
 			   ('Expected node missing at {1}' format: { url }) ])
 		  at: key
 		  put: aSerializable
+]
+
+{ #category : #actions }
+Matter >> close [
+
+	nodes do: [ :client | client close ]
 ]
 
 { #category : #initialization }
@@ -50,4 +66,10 @@ Matter >> newClientOn: selector [
 Matter >> nodes [
 
 	^ nodes
+]
+
+{ #category : #api }
+Matter >> size [
+
+	^ nodes keys inject: 0 into: [ :sum :e | sum + (nodes at: e) size ]
 ]
