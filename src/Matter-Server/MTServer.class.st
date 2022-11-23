@@ -6,20 +6,24 @@ Class {
 	#name : #MTServer,
 	#superclass : #Object,
 	#instVars : [
+		'port',
 		'zinc',
 		'serializer',
 		'store'
 	],
-	#classInstVars : [
-		'instance'
-	],
 	#category : #'Matter-Server-Core'
 }
 
-{ #category : #accessing }
-MTServer class >> instance [
+{ #category : #'instance creation' }
+MTServer class >> new [
 
-	^ instance ifNil: [ instance := self new ]
+	^ self on: self port
+]
+
+{ #category : #'instance creation' }
+MTServer class >> on: port [
+
+	^ super new port: port
 ]
 
 { #category : #accessing }
@@ -30,38 +34,10 @@ MTServer class >> port [
 	^ value ifNil: [ 1901 ] ifNotNil: [ value asInteger ]
 ]
 
-{ #category : #actions }
-MTServer class >> reset [
+{ #category : #'instance creation' }
+MTServer class >> startOn: port [
 
-	instance ifNotNil: [ 
-		instance stop.
-		instance := nil ]
-]
-
-{ #category : #'system startup' }
-MTServer class >> shutDown: quiting [
-	quiting
-		ifTrue: [ self reset ]
-]
-
-{ #category : #'system startup' }
-MTServer class >> startUp: resuming [
-
-	resuming ifTrue: [ 
-		self environment
-			at: #SessionManager
-			ifPresent: [ :manager | 
-				manager default currentSession addDeferredStartupAction: [ 
-					self restart ] ]
-			ifAbsent: [ Smalltalk addDeferredStartupAction: [ self restart ] ] ]
-]
-
-{ #category : #accessing }
-MTServer class >> token [
-
-	^ OSEnvironment current at: 'MATTER_TOKEN' ifAbsent: [ 
-		  self error:
-			  'The Matter server requires the MATTER_TOKEN env var value to be set' ]
+	^ (self on: port) start
 ]
 
 { #category : #actions }
@@ -80,9 +56,15 @@ MTServer >> initialize [
 ]
 
 { #category : #initialization }
+MTServer >> initializePort [
+
+	^ port := self class port
+]
+
+{ #category : #initialization }
 MTServer >> initializeZinc [
 
-	^ zinc := (ZnServer startOn: self class port)
+	^ zinc := (ZnServer startOn: self port)
 		          delegate: (ZnWebSocketDelegate handler: [ :webSocket | 
 					           self onWebSocketConnected: webSocket ]);
 		          yourself
@@ -134,6 +116,18 @@ MTServer >> onWebSocketConnected: aWebSocket [
 	^ self
 		  run: aWebSocket
 		  with: [ :message | self onMessage: message from: aWebSocket ]
+]
+
+{ #category : #accessing }
+MTServer >> port [
+
+	^ port ifNil: [ self initializePort ]
+]
+
+{ #category : #accessing }
+MTServer >> port: anObject [
+
+	port := anObject
 ]
 
 { #category : #'system startup' }

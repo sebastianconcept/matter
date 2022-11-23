@@ -1,3 +1,7 @@
+"
+I'm an abstract class with the commonalities of the different distribution algorithms.
+
+"
 Class {
 	#name : #MTDistributionAlgorithm,
 	#superclass : #Object,
@@ -10,15 +14,15 @@ Class {
 }
 
 { #category : #'instance creation' }
-MTDistributionAlgorithm class >> from: anArray [
+MTDistributionAlgorithm class >> fromUrls: someUrls [
 
-	^ self new initializeOn: anArray
+	^ self new initializeOn: someUrls
 ]
 
 { #category : #initialization }
-MTDistributionAlgorithm >> initializeOn: anArray [
+MTDistributionAlgorithm >> initializeOn: someUrls [
 
-	nodes := anArray.
+	nodes := someUrls.
 	self initializeSize 
 ]
 
@@ -30,6 +34,11 @@ MTDistributionAlgorithm >> initializeSize [
 
 { #category : #initialization }
 MTDistributionAlgorithm >> initializeSlots [
+
+	"The hashed keys are going to be distributed in different 
+	levels, one corresponding to each node.
+	The 'slots' are the values at which the hash distribution 
+	will 'snap' to and they are as many as configured nodes."
 
 	^ slots := (1 to: self size) collect: [ :i | 
 		           (100 / self size) asInteger * i ]
