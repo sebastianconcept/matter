@@ -4,7 +4,7 @@
 Algorithmically sharded repository for Pharo.
 
 [![Release](https://img.shields.io/github/v/tag/sebastianconcept/matter?label=release)](https://github.com/sebastianconcept/matter/releases)
-![Tests](https://img.shields.io/badge/tests-17-green)
+![Tests](https://img.shields.io/badge/tests-9-green)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE.txt)
 
 ---
@@ -43,7 +43,8 @@ server3 stop.
 		'ws://localhost:1902'.
 		'ws://localhost:1903'.
 	 }.
-	client := Matter fromUrls: urls.```
+	client := Matter fromUrls: urls.
+```
 
 ```Smalltalk
 "Add objects to the shard"
