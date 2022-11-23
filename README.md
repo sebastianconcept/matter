@@ -63,6 +63,7 @@ found == 42.
 (client nodes at: 'ws://localhost:1901') size == 2.
 (client nodes at: 'ws://localhost:1902') size == 0.
 (client nodes at: 'ws://localhost:1903') size == 1.
+client size == 3.
 ```
 
 ## Installation
@@ -72,7 +73,7 @@ Open a Pharo workspace and evaluate:
 ```smalltalk
 Metacello new
   baseline: 'Matter';
-  repository: 'github://sebastianconcept/matter:v0.0.1-alpha/src';
+  repository: 'github://sebastianconcept/matter/src';
   load
 ```
 
@@ -84,6 +85,6 @@ In BaselineOf or ConfigurationOf it can be added in this way:
 spec
   baseline: 'Matter'
     with: [ spec
-    repository: 'github://sebastianconcept/matter:v0.0.1-alpha/src';
+    repository: 'github://sebastianconcept/matter/src';
     loads: #('Core' 'Core-Tests' 'Client' 'Server' 'Client-Tests' 'Server-Tests') ]
 ```
