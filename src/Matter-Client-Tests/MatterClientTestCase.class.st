@@ -26,14 +26,6 @@ MatterClientTestCase >> testAtPutSerialization [
 ]
 
 { #category : #tests }
-MatterClientTestCase >> testHasHasher [
-
-	| api |
-	api := MTClient new.
-	self assert: api hasher notNil
-]
-
-{ #category : #tests }
 MatterClientTestCase >> testSimpleSerializeDeserialize [
 
 	| api string bytes |
