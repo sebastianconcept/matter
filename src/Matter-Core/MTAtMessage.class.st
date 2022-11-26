@@ -29,6 +29,6 @@ MTAtMessage >> key: anObject [
 MTAtMessage >> processOn: aMTServer over: aWebSocket [
 
 	| value |
-	value := aMTServer store at: key.
+	value := aMTServer store at: key ifAbsent: [ nil ].
 	aMTServer answer: (MTAtAnswer on: value) on: aWebSocket
 ]

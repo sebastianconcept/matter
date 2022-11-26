@@ -47,17 +47,17 @@ CaravanAlgorithmTestCase >> testMap5Nodes [
 	min := mean - (mean * 0.1).
 	max := mean + (mean * 0.1).
 	self assert: (distribution at: 'node1') size > min.
-	self assert: (distribution at: 'node1') size < max.
+	self assert: (distribution at: 'node1') size <= max.
 
 	self assert: (distribution at: 'node2') size > min.
-	self assert: (distribution at: 'node2') size < max.
+	self assert: (distribution at: 'node2') size <= max.
 
 	self assert: (distribution at: 'node3') size > min.
-	self assert: (distribution at: 'node3') size < max.
+	self assert: (distribution at: 'node3') size <= max.
 
 	self assert: (distribution at: 'node4') size > min.
-	self assert: (distribution at: 'node4') size < max.
+	self assert: (distribution at: 'node4') size <= max.
 
 	self assert: (distribution at: 'node5') size > min.
-	self assert: (distribution at: 'node5') size < max
+	self assert: (distribution at: 'node5') size <= max
 ]
