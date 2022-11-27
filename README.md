@@ -15,8 +15,8 @@ Algorithmically sharded repository for Pharo.
 - Simplicity. No transactions, no persistance, just a big cache of Pharo objects.
 - Horizontably scalable by adding nodes to the shard.
 - No need to create and maintain schemas.
-- Serialization-deserialization using Fuel.
-- Fast as a Dictionary.
+- Homogeneously distributed data load.
+- Fast as a Dictionary can be.
 
 ## Ambition
 
