@@ -89,3 +89,26 @@ spec
     repository: 'github://sebastianconcept/matter/src';
     loads: #('Core' 'Core-Tests' 'Client' 'Server' 'Client-Tests' 'Server-Tests') ]
 ```
+
+## Benchmarks
+Here are some benchmarks to quantify its optimization potential using the production data that ispired this work:
+
+```smalltalk
+ABBench bench: [ 
+    ABBench 
+          a: [ bench queryMongoTimes: 10000 ] 
+          b: [ bench queryMatterTimes: 10000 ].
+    ].
+"B is 317.29% FASTER than A"
+```
+
+```smalltalk
+ABBench bench: [ 
+    ABBench 
+    	a: [ bench queryRedisTimes: 1000 ] 
+	b: [ bench queryMatterTimes: 1000 ].
+    ].
+
+"B is 191.47% FASTER than A" 
+```
+
