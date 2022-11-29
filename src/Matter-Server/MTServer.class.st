@@ -91,23 +91,12 @@ MTServer >> onMessage: aMessageByteArray from: aWebSocket [
 	| message |
 	message := self materialize: aMessageByteArray.
 	message processOn: self over: aWebSocket
-
-	"| view message newViewModel |
-	message := MTMessage for: aMessageString.
-	view := self views
-		at: aWebSocket
-		ifAbsentPut: [ newViewModel := LBViewModel
-				fromMessage: message
-				on: aWebSocket
-				for: self.
-			self triggerEvent: #viewModelOpened: with: newViewModel.
-			newViewModel ].
-	message sentTo: view"
 ]
 
 { #category : #reactions }
 MTServer >> onSocketClosed: aWebSocket [
-	"views ifNotNil: [ views removeKey: aWebSocket ifAbsent: [ nil ] ]"
+
+	
 ]
 
 { #category : #reactions }
