@@ -17,8 +17,8 @@ CaravanAlgorithmTestCase >> testMap3Nodes [
 			 ifAbsentPut: [ OrderedCollection new ]) add: str ].
 
 	mean := 1000 / 3.
-	min := mean - (mean * 0.1).
-	max := mean + (mean * 0.1).
+	min := mean - (mean * 0.15).
+	max := mean + (mean * 0.15).
 	self assert: (distribution at: 'node1') size > min.
 	self assert: (distribution at: 'node1') size < max.
 
