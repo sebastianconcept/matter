@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #actions }
-MTSerializer >> materialize: aByteArray [
+MTSerializer >> materialize: aString [
 
-	^ (MCDataStream on: aByteArray readStream) next
+	^ STON fromString: aString
 ]
 
 { #category : #actions }
 MTSerializer >> serialize: anObject [
 
-	^ MCDataStream streamedRepresentationOf: anObject
+	^ STON toString: anObject
 ]
