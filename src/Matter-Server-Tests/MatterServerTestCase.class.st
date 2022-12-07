@@ -35,8 +35,8 @@ MatterServerTestCase >> testAtPutAnswer [
 MatterServerTestCase >> testSizeAnswer [
 
 	| api answer server |
-	server := MTServer startOn: 1901.
-	api := MTClient host: 'localhost' port: 1901.
+	server := MTServer startOn: 1801.
+	api := MTClient host: 'localhost' port: 1801.
 
 	api at: #stored40 put: 40.
 	api at: #stored41 put: 41.

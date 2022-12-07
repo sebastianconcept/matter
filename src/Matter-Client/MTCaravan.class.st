@@ -54,6 +54,6 @@ MTCaravan >> slotIndexFor: aHasheable [
 
 	| slot |
 	slot := self closestSlotFor:
-		        (self reduceHash: aHasheable identityHash).
+		        (self reduceHash: aHasheable hash).
 	^ self slots indexOf: slot
 ]

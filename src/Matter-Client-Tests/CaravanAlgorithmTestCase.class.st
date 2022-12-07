@@ -44,8 +44,8 @@ CaravanAlgorithmTestCase >> testMap5Nodes [
 			 ifAbsentPut: [ OrderedCollection new ]) add: str ].
 
 	mean := 1000 / 5.
-	min := mean - (mean * 0.1).
-	max := mean + (mean * 0.1).
+	min := mean - (mean * 0.15).
+	max := mean + (mean * 0.15).
 	self assert: (distribution at: 'node1') size > min.
 	self assert: (distribution at: 'node1') size <= max.
 
@@ -60,4 +60,24 @@ CaravanAlgorithmTestCase >> testMap5Nodes [
 
 	self assert: (distribution at: 'node5') size > min.
 	self assert: (distribution at: 'node5') size <= max
+]
+
+{ #category : #tests }
+CaravanAlgorithmTestCase >> testSameNodeForSameString [
+
+	| algo str1 str2 str3 n1 n2 n3 |
+	str1 := UUID new asString36.
+	str2 := UUID new asString36.
+	str3 := UUID new asString36.
+	algo := MTCaravan fromUrls:
+		        { 'node1'. 'node2'. 'node3'. 'node4'. 'node5' }.
+
+	n1 := algo nodeFor: str1.
+	n2 := algo nodeFor: str2.
+	n3 := algo nodeFor: str3.
+
+	1000 timesRepeat: [ self assert: n1 equals: (algo nodeFor: str1) ].
+	1000 timesRepeat: [ self assert: n2 equals: (algo nodeFor: str2) ].
+	1000 timesRepeat: [ self assert: n3 equals: (algo nodeFor: str3) ].
+	
 ]
