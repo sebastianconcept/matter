@@ -4,7 +4,7 @@
 Algorithmically sharded repository for Pharo.
 
 [![Release](https://img.shields.io/github/v/tag/sebastianconcept/matter?label=release)](https://github.com/sebastianconcept/matter/releases)
-![Tests](https://img.shields.io/badge/tests-9-green)
+![Tests](https://img.shields.io/badge/tests-10-green)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE.txt)
 
 ---
@@ -112,3 +112,22 @@ ABBench bench: [
 "B is 191.47% FASTER than A" 
 ```
 
+## Docker
+### Image build
+
+```bash
+docker build -t matter . 
+```
+### Container run
+
+```bash
+docker run --rm -e MATTER_PORT=1901 -p 1901:1901 matter
+```
+
+### Cluster with docker-compose
+
+This will start/stop a Matter cluster of 5 MTServer nodes. Starting in port 1901 and ending in 1905.
+
+```bash
+docker-compose up -d
+```
