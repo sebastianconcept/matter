@@ -5,6 +5,6 @@ Deprecation showWarning: false.
 Metacello new
   baseline: 'Matter';
   repository: 'github://sebastianconcept/matter/src';
-  load.
+  load: #('Server').
 
 Smalltalk snapshot: true andQuit: true.
