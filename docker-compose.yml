@@ -1,0 +1,54 @@
+# This will start/stop a Matter cluster of 5 MTServer nodes.
+# Starting in port 1901 and ending in 1905.
+
+services:
+  matter1:
+    image: matter:latest
+    environment:
+        - MATTER_PORT=1901
+    ports:
+      - '1901:1901'
+    ulimits:
+      rtprio:
+        soft: 2
+        hard: 2
+  matter2:
+    image: matter:latest
+    environment:
+        - MATTER_PORT=1901
+    ports:
+      - '1902:1901'
+    ulimits:
+      rtprio:
+        soft: 2
+        hard: 2
+  matter3:
+    image: matter:latest
+    environment:
+        - MATTER_PORT=1901
+    ports:
+      - '1903:1901'
+    ulimits:
+      rtprio:
+        soft: 2
+        hard: 2
+  matter4:
+    image: matter:latest
+    environment:
+        - MATTER_PORT=1901
+    ports:
+      - '1904:1901'
+    ulimits:
+      rtprio:
+        soft: 2
+        hard: 2
+  matter5:
+    image: matter:latest
+    environment:
+        - MATTER_PORT=1901
+    ports:
+      - '1905:1901'
+    ulimits:
+      rtprio:
+        soft: 2
+        hard: 2
