@@ -3,6 +3,7 @@
 
 Algorithmically sharded repository for Pharo.
 
+![build](https://github.com/sebastianconcept/matter/actions/workflows/build.yml/badge.svg)
 [![Release](https://img.shields.io/github/v/tag/sebastianconcept/matter?label=release)](https://github.com/sebastianconcept/matter/releases)
 ![Tests](https://img.shields.io/badge/tests-10-green)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE.txt)

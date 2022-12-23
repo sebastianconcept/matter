@@ -1,0 +1,10 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'Matter',
+      #directory : 'src',
+      #load : ['Client-Tests', 'Server-Tests'],
+      #platforms : [ #pharo ]
+    }
+  ]
+}
