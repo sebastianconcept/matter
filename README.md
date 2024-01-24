@@ -8,6 +8,10 @@ Algorithmically sharded repository for Pharo.
 ![Tests](https://img.shields.io/badge/tests-10-green)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE.txt)
 
+[![Project Status: Concept – Minimal or no implementation has been done yet, or the repository is only intended to be a limited example, demo, or proof-of-concept.](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
+[![Pharo 7](https://img.shields.io/badge/Pharo-7-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo 10](https://img.shields.io/badge/Pharo-10-%23aac9ff.svg)](https://pharo.org/download)
+
 ---
 
 ## Features
